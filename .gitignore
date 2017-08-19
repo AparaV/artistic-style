@@ -3,3 +3,9 @@
 
 # IPython Checkpoints
 .ipynb_checkpoints
+
+# Tensorflow checkpoints
+.ckpt
+
+# Output images
+output
