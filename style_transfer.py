@@ -20,25 +20,22 @@ def style_transfer(CONTENT_IMG_PATH, STYLE_IMG_PATH, OUTPUT_IMG_PATH, VGG_PATH, 
 	iterations       : Number of iterations the graph needs to be run for
 	content_weight   : Weight of the content image (referred to as alpha in the paper)
 	style_weight     : Weight of the style image (referred to as beta in the paper)
-	learning_rate    : Learning rate for ADAM optimizer
-	beta1            : Hyperparamter for ADAM optimizer
-	beta2            : Hyperparamter for ADAM optimizer
-	epsilon          : Hyperparamter for ADAM optimizer
+	learning_rate    : Learning rate for Adam optimizer
+	beta1            : Hyperparameter for Adam optimizer
+	beta2            : Hyperparameter for Adam optimizer
+	epsilon          : Hyperparameter for Adam optimizer
 	GPU              : Boolean value - True makes use of GPU, False uses CPU. Defaults to False (CPU)
 	'''
 
 	# Load VGG network
-	print("Loading VGG Network...")
 	VGG_net, mean_pixels = vgg.load(VGG_PATH)
 
 	# Read images and preprocess them
-	print("Processing images...")
 	content_img = read_img(CONTENT_IMG_PATH, mean_pixels)
 	content_shape = np.shape(content_img)
 	style_img = read_img(STYLE_IMG_PATH, mean_pixels)
 	style_shape = np.shape(style_img)
 
-	print("Propagating forward...")
 	# Compute content features
 	content = {}
 	with tf.Graph().as_default():
@@ -63,7 +60,6 @@ def style_transfer(CONTENT_IMG_PATH, STYLE_IMG_PATH, OUTPUT_IMG_PATH, VGG_PATH, 
 				style[layer] = gram
 
 	# Stylize image
-	print("Propagating backward...")
 	stylize = tf.Graph()
 	with stylize.as_default():
 
