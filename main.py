@@ -7,15 +7,15 @@ VGG_PATH = os.path.join('data', 'imagenet-vgg-verydeep-19.mat')
 ITERS = 1001
 CONTENT_WEIGHT = 50
 STYLE_WEIGHT = 400
-LEARNING_RATE = 1e1
+LEARNING_RATE = 3e0
 BETA1 = 0.9
 BETA2 = 0.999
 EPSILON = 1e-08
 GPU = False
 
-content_path = os.path.join("images", "content_2.jpg")
-style_path = os.path.join("images", "style_1.jpg")
-output_path = os.path.join("test", "3_output.jpg")
+content_path = os.path.join("sample", "content.jpg")
+style_path = os.path.join("sample", "style.jpg")
+output_path = os.path.join("sample", "output.jpg")
 
 
 def parse_arguments():
