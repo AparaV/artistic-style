@@ -4,9 +4,13 @@
 # IPython Checkpoints
 .ipynb_checkpoints
 
+# Python cache
+__pycache__
+
 # Tensorflow checkpoints
 .ckpt
 
 # Output images
 output
 comparison
+test
