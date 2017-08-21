@@ -8,12 +8,11 @@ Why? Because this thing blows me away each time I see it and after coding it fro
 This [paper](https://arxiv.org/pdf/1508.06576v2.pdf) explains how it is possible to extract the *style* and *content* from an image.
 Extracting an artist's style from, say, a classic painting and combining it with the content of, say, a modern day photograph, we can envision what the artist would have painted.
 
-For example, combining Edvard Munch's style from *The Scream* and the river from this photograph achieved this.
+For example, combining Edvard Munch's style from *The Scream* and this photograph of a river, we can achieve this.
 
-<img src="images/originals/scream.jpg" alt="scream" style="width: 200px; height: 200px"/>
+![river_and_scream](images/img-1.png)
 
-<img src="images/originals/river.jpg" alt="river" style="width: 200px; height: 200px"/>
-<img src="images/styles/river+scream.jpg" alt="river_scream" style="width: 200px; height: 200px"/>
+![river_scream](images/img-2.png)
 
 ## Related projects
 
@@ -65,32 +64,25 @@ You can track this [issue](https://github.com/AparaV/artistic-style/issues/2) fo
 
 ### Different Styles
 
-Here is the river picture again.
+Here is the picture of the river again.
 
-![river](images/originals/river.jpg)
+![river](images/img-3.png)
 
-This time, I'm combining it *A Starry Night* (by Vincent Van Gogh), *Girl with a Mandolin* (by Pablo Picasso), and *The Great Wave off Kanagawa* (by Hokusai) respectively.
+This time, I'm combining it with *A Starry Night* (by Vincent Van Gogh), *Girl with a Mandolin* (by Pablo Picasso), and *The Great Wave off Kanagawa* (by Hokusai) respectively.
 
-![starry_night](images/originals/starry_night.jpg)
-![river_starry_night](images/styles/river+starry_night.jpg)
+![river_starry_night](images/img-4.png)
 
-![girl_with_mandolin](images/originals/girl_with_mandolin.jpg)
-![river_girl_with_mandolin](images/styles/river+mandolin.jpg)
+![river_girl_with_mandolin](images/img-5.png)
 
-![great_waves](images/originals/great_waves.jpg)
-![river_great_waves](images/styles/river+great_waves.jpg)
+![river_great_waves](images/img-6.png)
 
 ### Varying the number of iterations
 
 Here is a picture of me. Let's look at how the image varies every 500 iterations from 500 to 2000 when combined with *A Starry Night*.
 
-![me](images/originals/me.jpg)
-![starry_night](images/originals/starry_night.jpg)
+![me-iters-1](images/img-7.png)
 
-![me-500](images/styles/me-500.jpg)
-![me-1000](images/styles/me-1000.jpg)
-![me-1500](images/styles/me-1500.jpg)
-![me-2000](images/styles/me-2000.jpg)
+![me-iters-2](images/img-8.png)
 
 * Top left - 500 iterations
 * Top right - 1000 iterations
