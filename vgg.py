@@ -4,6 +4,9 @@ import numpy as np
 import tensorflow as tf
 
 def load(path):
+	'''
+	Loads the pre-trained VGG covnet
+	'''
 	raw = scipy.io.loadmat(path)
 	net = raw['layers'][0]
 	mean_pixels = raw['meta'][0][0][2][0][0][2][0][0]

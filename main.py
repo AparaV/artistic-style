@@ -19,8 +19,8 @@ output_path = os.path.join("sample", "output.jpg")
 
 
 def parse_arguments():
-	global content_path, style_path, output_path, VGG_PATH, ITERS
-	global CONTENT_WEIGHT, STYLE_WEIGHT, LEARNING_RATE, BETA1, BETA2, EPSILON, GPU
+	global content_path, style_path, output_path
+	global VGG_PATH, ITERS, CONTENT_WEIGHT, STYLE_WEIGHT, LEARNING_RATE, GPU
 
 	parser = argparse.ArgumentParser()
 	parser.add_argument("--content_img", type=str, help="Path of content image")
@@ -32,9 +32,6 @@ def parse_arguments():
 	parser.add_argument("--vgg", type=str, help="Path for VGG model")
 	parser.add_argument("--gpu", type=bool, help="Pass in true (1) to utilize GPU computation")
 	parser.add_argument("--learning_rate", type=float, help="Learning rate for optimizer")
-	parser.add_argument("--beta1", type=float, help="beta1 hyperparameter for Adam optimizer")
-	parser.add_argument("--beta2", type=float, help="beta2 hyperparameter for Adam optimizer")
-	parser.add_argument("--epsilon", type=float, help="epsilon hyperparameter for Adam optimizer")
 	args = parser.parse_args()
 
 	if args.content_img:
@@ -55,15 +52,16 @@ def parse_arguments():
 		GPU = args.gpu
 	if args.learning_rate:
 		LEARNING_RATE = args.learning_rate
-	if args.beta1:
-		BETA1 = args.beta1
-	if args.beta2:
-		BETA2 = args.beta2
-	if args.epsilon:
-		EPSILON = args.epsilon
 
 def main():
+	# Parse arguments
 	parse_arguments()
+
+	# Make .ckpt directory
+	if not os.path.exists(".ckpt"):
+		os.mkdir(".ckpt")
+
+	# Stylize image
 	style_transfer(content_path, style_path, output_path, VGG_PATH, ITERS, CONTENT_WEIGHT,
 			STYLE_WEIGHT, LEARNING_RATE, BETA1, BETA2, EPSILON, GPU)
 
