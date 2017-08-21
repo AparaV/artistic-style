@@ -10,10 +10,10 @@ Extracting an artist's style from, say, a classic painting and combining it with
 
 For example, combining Edvard Munch's style from *The Scream* and the river from this photograph achieved this.
 
-![scream](images/originals/scream.jpg)
+<img src="images/originals/scream.jpg" alt="scream" style="width: 200px; height: 200px"/>
 
-![river](images/originals/river.jpg)
-![river_scream](images/styles/river+scream.jpg)
+<img src="images/originals/river.jpg" alt="river" style="width: 200px; height: 200px"/>
+<img src="images/styles/river+scream.jpg" alt="river_scream" style="width: 200px; height: 200px"/>
 
 ## Related projects
 
@@ -92,10 +92,10 @@ Here is a picture of me. Let's look at how the image varies every 500 iterations
 ![me-1500](images/styles/me-1500.jpg)
 ![me-2000](images/styles/me-2000.jpg)
 
-Top left - 500 iterations
-Top right - 1000 iterations
-Bottom left - 1500 iterations
-Bottom right - 2000 iterations
+* Top left - 500 iterations
+* Top right - 1000 iterations
+* Bottom left - 1500 iterations
+* Bottom right - 2000 iterations
 
 I'd say 1000 - 1500 iterations should produce nice results given the other parameters are tuned properly.
 But feel free to train longer if you have access to a GPU.
