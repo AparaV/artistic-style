@@ -11,7 +11,5 @@ __pycache__
 .ckpt
 
 # Output images
-output
-comparison
 test
 sample/output.jpg
