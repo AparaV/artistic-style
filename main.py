@@ -23,9 +23,9 @@ def parse_arguments():
 	global VGG_PATH, ITERS, CONTENT_WEIGHT, STYLE_WEIGHT, LEARNING_RATE, GPU
 
 	parser = argparse.ArgumentParser()
-	parser.add_argument("--content_img", type=str, help="Path of content image")
-	parser.add_argument("--style_img", type=str, help="Path of style image")
-	parser.add_argument("--output_img", type=str, help="Destination for output image")
+	parser.add_argument("-c", "--content", type=str, help="Path of content image")
+	parser.add_argument("-s", "--style", type=str, help="Path of style image")
+	parser.add_argument("-o", "--output", type=str, help="Destination for output image")
 	parser.add_argument("--iterations", type=int, help="Number of iterations of backprop")
 	parser.add_argument("--content_weight", type=float, help="Weight of content image (alpha)")
 	parser.add_argument("--style_weight", type=float, help="Weight of style image (beta)")
@@ -34,12 +34,12 @@ def parse_arguments():
 	parser.add_argument("--learning_rate", type=float, help="Learning rate for optimizer")
 	args = parser.parse_args()
 
-	if args.content_img:
-		content_path = args.content_img
-	if args.style_img:
-		style_path = args.style_img
-	if args.output_img:
-		output_path = args.output_img
+	if args.content:
+		content_path = args.content
+	if args.style:
+		style_path = args.style
+	if args.output:
+		output_path = args.output
 	if args.iterations:
 		ITERS = args.iterations
 	if args.content_weight:

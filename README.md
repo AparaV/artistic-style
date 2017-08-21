@@ -39,7 +39,7 @@ $ pip install -r requirements.txt
 After cloning, installing and dowloading [dependencies](#dependencies):
 
 ```shell
-$ python main.py --content_img <content-img-path> --style_img <style-img-path> --output_img <destination-path>
+$ python main.py -c <content-img-path> -s <style-img-path> -o <destination-path>
 ```
 
 There are various options that can be modified. Few of the important ones are:
