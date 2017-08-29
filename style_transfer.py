@@ -8,7 +8,7 @@ CONTENT_LAYERS = ('relu4_2', 'relu5_2')
 STYLE_LAYERS = ('relu1_1', 'relu2_1', 'relu3_1', 'relu4_1', 'relu5_1')
 
 def style_transfer(CONTENT_IMG_PATH, STYLE_IMG_PATH, OUTPUT_IMG_PATH, VGG_PATH, iterations, content_weight, style_weight,
-		learning_rate, beta1, beta2, epsilon, GPU=False):
+		learning_rate, beta1, beta2, epsilon, GPU=-1):
 	'''
 	Where the magic happens!
 
@@ -23,13 +23,13 @@ def style_transfer(CONTENT_IMG_PATH, STYLE_IMG_PATH, OUTPUT_IMG_PATH, VGG_PATH, 
 	beta1            : Hyperparameter for Adam optimizer
 	beta2            : Hyperparameter for Adam optimizer
 	epsilon          : Hyperparameter for Adam optimizer
-	GPU              : Boolean value - True makes use of GPU, False uses CPU. Defaults to False (CPU)
+	GPU              : Integer: -1 for CPU (default); any other non-negative integer for corresponding GPU device
 	'''
 
-	if GPU is True:
-		device_prop = "/gpu:0"
-	else:
+	if GPU == -1:
 		device_prop = "/cpu:0"
+	else:
+		device_prop = "/gpu:" + str(GPU)
 
 	# Load VGG network
 	VGG_net, mean_pixels = vgg.load(VGG_PATH)
@@ -42,21 +42,23 @@ def style_transfer(CONTENT_IMG_PATH, STYLE_IMG_PATH, OUTPUT_IMG_PATH, VGG_PATH, 
 
 	# Compute content features
 	content = {}
-	with tf.Graph().as_default():
+	with tf.Graph().as_default(), tf.device(device_prop):
 		img = tf.constant(content_img, dtype=tf.float32, shape=content_shape)
 		net = vgg.build_network(img, VGG_net)
 
-		with tf.Session() as sess:
+		GPU_config = config=tf.ConfigProto(allow_soft_placement=True) # Suppress error when manually placing device
+		with tf.Session(config=GPU_config) as sess:
 			for layer in CONTENT_LAYERS:
 				content[layer] = net[layer].eval()
 
 	# Compute style features
 	style = {}
-	with tf.Graph().as_default():
+	with tf.Graph().as_default(), tf.device(device_prop):
 		img = tf.constant(style_img, dtype=tf.float32, shape=style_shape)
 		net = vgg.build_network(img, VGG_net)
 
-		with tf.Session() as sess:
+		GPU_config = config=tf.ConfigProto(allow_soft_placement=True) # Suppress error when manually placing device
+		with tf.Session(config=GPU_config) as sess:
 			for layer in STYLE_LAYERS:
 				features = net[layer].eval()
 				features = np.reshape(features, (-1, features.shape[3]))
@@ -65,7 +67,7 @@ def style_transfer(CONTENT_IMG_PATH, STYLE_IMG_PATH, OUTPUT_IMG_PATH, VGG_PATH, 
 
 	# Stylize image
 	stylize = tf.Graph()
-	with stylize.as_default():
+	with stylize.as_default(), tf.device(device_prop):
 
 		# Initialize output image
 		output_img = tf.Variable(tf.random_normal(content_shape))
@@ -103,7 +105,8 @@ def style_transfer(CONTENT_IMG_PATH, STYLE_IMG_PATH, OUTPUT_IMG_PATH, VGG_PATH, 
 			print("\t\tTotal Loss: ", L_total.eval())
 
 		# Run graph
-		with tf.Session() as sess:
+		GPU_config = config=tf.ConfigProto(allow_soft_placement=True) # Suppress error when manually placing device
+		with tf.Session(config=GPU_config) as sess:
 			tf.global_variables_initializer().run()
 			print("Initialized")
 			for step in range(iterations):
