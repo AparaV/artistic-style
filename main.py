@@ -11,7 +11,7 @@ LEARNING_RATE = 3e0
 BETA1 = 0.9
 BETA2 = 0.999
 EPSILON = 1e-08
-GPU = False
+GPU = -1
 
 content_path = os.path.join("sample", "content.jpg")
 style_path = os.path.join("sample", "style.jpg")
@@ -30,7 +30,7 @@ def parse_arguments():
 	parser.add_argument("--content_weight", type=float, help="Weight of content image (alpha)")
 	parser.add_argument("--style_weight", type=float, help="Weight of style image (beta)")
 	parser.add_argument("--vgg", type=str, help="Path for VGG model")
-	parser.add_argument("--gpu", type=bool, help="Pass in true (1) to utilize GPU computation")
+	parser.add_argument("--gpu", type=int, help="Choose device to be used for computation. -1 for /cpu:0; 0 for /gpu:0, 1 for /gpu:1, etc.")
 	parser.add_argument("--learning_rate", type=float, help="Learning rate for optimizer")
 	args = parser.parse_args()
 
@@ -48,7 +48,7 @@ def parse_arguments():
 		STYLE_WEIGHT = args.style_weight
 	if args.vgg:
 		VGG_PATH = args.vgg
-	if args.gpu:
+	if type(args.gpu) is int:
 		GPU = args.gpu
 	if args.learning_rate:
 		LEARNING_RATE = args.learning_rate
