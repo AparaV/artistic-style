@@ -46,7 +46,7 @@ There are various options that can be modified. Few of the important ones are:
 * `--content_weight <number>` - Changes the weight of the content image (described as alpha in the paper). Defaults to 50
 * `--style_weight <number>` - Changes the weight of the style image (described as beta in the paper). Defaults to 400
 * `--learning_rate <number>` - Changes the learning rate of backprop. Defaults to 3
-
+* `--gpu <number>` - Choose whether to use your CPU (`-1`) or GPU device of your choice (corresponding number) for computation. Defaults to CPU
 For the entire list of optional arguments, use this command:
 
 ```shell
@@ -55,10 +55,6 @@ $ python main.py --help
 
 I've found that these default parameters work great in most cases, where are images are 512x512.
 You might need to tune these hyperparameters for some images, especially with larger images.
-
-**Note** The `--gpu` option does not work as expected currently.
-So you may want to edit the source code directly until I fix that.
-You can track this [issue](https://github.com/AparaV/artistic-style/issues/2) for progress on that front.
 
 ## Examples
 
