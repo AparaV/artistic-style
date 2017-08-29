@@ -26,6 +26,11 @@ def style_transfer(CONTENT_IMG_PATH, STYLE_IMG_PATH, OUTPUT_IMG_PATH, VGG_PATH, 
 	GPU              : Boolean value - True makes use of GPU, False uses CPU. Defaults to False (CPU)
 	'''
 
+	if GPU is True:
+		device_prop = "/gpu:0"
+	else:
+		device_prop = "/cpu:0"
+
 	# Load VGG network
 	VGG_net, mean_pixels = vgg.load(VGG_PATH)
 
