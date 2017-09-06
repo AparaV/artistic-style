@@ -70,7 +70,7 @@ def style_transfer(CONTENT_IMG_PATH, STYLE_IMG_PATH, OUTPUT_IMG_PATH, VGG_PATH, 
 	with stylize.as_default(), tf.device(device_prop):
 
 		# Initialize output image
-		output_img = tf.Variable(tf.random_normal(content_shape))
+		output_img = tf.Variable(tf.cast(content_img, dtype=tf.float32))
 		net = vgg.build_network(output_img, VGG_net)
 
 		# Content loss
