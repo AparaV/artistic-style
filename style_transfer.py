@@ -119,7 +119,8 @@ def style_transfer(CONTENT_IMG_PATH, STYLE_IMG_PATH, OUTPUT_IMG_PATH, VGG_PATH, 
 			print("Finished saving checkpoint.")
 
 	# Output image
-	with tf.Session(graph=stylize) as sess:
+	GPU_config = config=tf.ConfigProto(allow_soft_placement=True) # Suppress error when manually placing device
+	with tf.Session(graph=stylize, config=GPU_config) as sess:
 		print("Restoring checkpoint.")
 		saver.restore(sess, "./.ckpt/styleTransfer.ckpt")
 		op_img = tf.cast(output_img, dtype=np.float64).eval()
